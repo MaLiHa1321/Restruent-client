@@ -6,13 +6,14 @@ const Navbar = () => {
     const navOption = <>
     <NavLink to='/' className='mr-4 text-xl'>Home</NavLink>
     <NavLink to='/menu' className='mr-4 text-xl'>Menu</NavLink>
+    <NavLink to='/order' className='mr-4 text-xl'>Order</NavLink>
     <NavLink to='/contact' className='mr-4 text-xl'>Contact</NavLink>
     <NavLink to='/about' className='mr-4 text-xl'>About</NavLink>
 
     </>
     return (
         <>
-        <div className="navbar fixed z-10 max-w-screen-xl bg-opacity-30 bg-black text-white">
+        <div className="navbar fixed z-10 max-w-screen-xl bg-opacity-30 bg-black">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -22,9 +23,9 @@ const Navbar = () => {
        {navOption}
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
+    <a className="btn btn-ghost normal-case text-xl text-white">Bistro Boss</a>
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-center hidden lg:flex text-white">
     <ul className="menu menu-horizontal px-1">
    {navOption}
     </ul>
