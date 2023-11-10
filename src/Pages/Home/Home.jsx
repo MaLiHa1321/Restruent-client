@@ -7,11 +7,15 @@ import Testimonial from './Testimonial/Testimonial';
 import Boss from './Boss/Boss';
 import Contact from './Contact/Contact';
 import Recommand from './ChefRecommanded/Recommand';
+import { Helmet } from 'react-helmet-async';
 
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Bistro Boss | Home</title>
+            </Helmet>
          <Banner></Banner>
          <Categories></Categories>
          <Boss></Boss>
