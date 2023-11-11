@@ -16,7 +16,7 @@ import '@smastrom/react-rating/style.css'
 const Testimonial = () => {
     const [reveiws, setReveiws] = useState([])
     useEffect(()=>{
-        axios.get('reveiw.json')
+        axios.get('http://localhost:5000/reviwes')
         .then(res => {
             setReveiws(res.data)
         })

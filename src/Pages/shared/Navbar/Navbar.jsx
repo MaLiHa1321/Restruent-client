@@ -6,7 +6,7 @@ const Navbar = () => {
     const navOption = <>
     <NavLink to='/' className='mr-4 text-xl'>Home</NavLink>
     <NavLink to='/menu' className='mr-4 text-xl'>Menu</NavLink>
-    <NavLink to='/order' className='mr-4 text-xl'>Order</NavLink>
+    <NavLink to='/order/salad' className='mr-4 text-xl'>Order</NavLink>
     <NavLink to='/contact' className='mr-4 text-xl'>Contact</NavLink>
     <NavLink to='/about' className='mr-4 text-xl'>About</NavLink>
 
