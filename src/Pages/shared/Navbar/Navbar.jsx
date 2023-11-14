@@ -2,9 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css'
 import useAuth from '../../../hook/useAuth';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import useCart from '../../../hook/useCart';
+
 
 const Navbar = () => {
   const {user,logOutUser} = useAuth()
+  const [cart] = useCart()
   const handleLogOut = () =>{
     logOutUser()
     .then(() => {})
@@ -16,6 +20,12 @@ const Navbar = () => {
     <NavLink to='/order/salad' className='mr-4 text-xl'>Order</NavLink>
     <NavLink to='/contact' className='mr-4 text-xl'>Contact</NavLink>
     <NavLink to='/about' className='mr-4 text-xl'>About</NavLink>
+    <NavLink to='/cart' className='mr-4 text-xl'>
+    <button className="btn">
+    <AiOutlineShoppingCart className='text-2xl'></AiOutlineShoppingCart>
+  <div className="badge badge-secondary">{cart.length}</div>
+</button>
+    </NavLink>
   
     {
       user ? <>
