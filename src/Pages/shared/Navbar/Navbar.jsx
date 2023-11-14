@@ -20,7 +20,7 @@ const Navbar = () => {
     <NavLink to='/order/salad' className='mr-4 text-xl'>Order</NavLink>
     <NavLink to='/contact' className='mr-4 text-xl'>Contact</NavLink>
     <NavLink to='/about' className='mr-4 text-xl'>About</NavLink>
-    <NavLink to='/cart' className='mr-4 text-xl'>
+    <NavLink to='/dashboard/cart' className='mr-4 text-xl'>
     <button className="btn">
     <AiOutlineShoppingCart className='text-2xl'></AiOutlineShoppingCart>
   <div className="badge badge-secondary">{cart.length}</div>
