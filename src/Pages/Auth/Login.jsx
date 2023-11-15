@@ -3,6 +3,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, val
 import useAuth from '../../hook/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SocialLink from './SocialLink';
 
 
 
@@ -96,8 +97,12 @@ const Login = () => {
             <p>New here? Create an account</p>
             </Link>
             </div>
+            <div className="divider"></div>
+            <SocialLink></SocialLink>
           </div>
+       
         </div>
+       
       </div>
     );
 };

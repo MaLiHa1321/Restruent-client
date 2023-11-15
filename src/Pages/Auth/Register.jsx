@@ -3,9 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hook/useAuth';
+import userAxiosSecure from '../../hook/userAxiosSecure';
+import SocialLink from './SocialLink';
 
 
 const Register = () => {
+  const axiosPublic = userAxiosSecure()
   const {createUser,updateUser} = useAuth()
   const navigate = useNavigate()
     const {
@@ -15,16 +18,27 @@ const Register = () => {
         formState: { errors },
       } = useForm()
       const onSubmit = (data) => {
-        console.log(data)
+  
         createUser(data.email, data.password)
         .then(res => {
           const user = res.user;
           console.log(user)
           updateUser(data.name, data.photoURL)
           .then(() =>{
-            console.log('user profile')
-            reset();
-            navigate('/')
+            const userInfo = {
+              name: data.name,
+              email: data.email
+            }
+                
+       axiosPublic.post('/users', userInfo)
+       .then(res => {
+        if(res.data.insertedId){
+          console.log("user added to the database")
+          reset();
+          navigate('/')
+        }
+       })
+          
           })
           .catch(err => console.log(err))
         })
@@ -91,6 +105,7 @@ const Register = () => {
                 <p>Already have an account?</p>
                 </Link>
             </div>
+            <SocialLink></SocialLink>
           </div>
         </div>
       </div>
