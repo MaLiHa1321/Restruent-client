@@ -9,10 +9,33 @@ const AllUser = () => {
     const {data: users=[], refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () =>{
-      const res = await axiosSecure.get('/users')
+      const res = await axiosSecure.get('/users', {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+      })
       return res.data;
         }
     })
+
+    // role maker
+    const handlemakeAdmin = user =>{
+        axiosSecure.patch(`/user/admin/${user._id}`)
+        .then(res => {
+            console.log(res.data)
+            if(res.data.modifiedCount > 0){
+                refetch()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${user.name} is an admin now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                   });
+            }
+    })
+    }
+
 
     // delete User
     const handleDeleteUser = user =>{
@@ -79,9 +102,13 @@ const AllUser = () => {
             <td>{user?.name}</td>
             <td>{user?.email}</td>
             <td>
-            <button onClick={() => handleDeleteUser(user)} className="btn bg-orange-400 btn-lg">
-                <AiOutlineUser className='text-white text-lg'></AiOutlineUser>
-              </button>
+                {
+                    user.role === 'admin' ? 'admin' :
+                    <button onClick={() => handlemakeAdmin(user)} className="btn bg-orange-400 btn-lg">
+                    <AiOutlineUser className='text-white text-lg'></AiOutlineUser>
+                  </button>
+                }
+           
             </td>
             <td>
             <button onClick={() => handleDeleteUser(user)} className="btn bg-red-400 btn-lg">
