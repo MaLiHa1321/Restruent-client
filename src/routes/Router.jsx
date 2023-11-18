@@ -85,7 +85,7 @@ import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
           element: <AdminRoutes>
             <UpdateItem />
           </AdminRoutes>,
-          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+          loader: ({params}) => fetch(`https://final-restruent-server.vercel.app/menu/${params.id}`)
         },
       ]
     }
