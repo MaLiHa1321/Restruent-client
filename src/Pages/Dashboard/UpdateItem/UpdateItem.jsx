@@ -47,7 +47,7 @@ const UpdateItem = () => {
                    });
             }
         }
-        // console.log(res.data)
+      
 
     }
     return (

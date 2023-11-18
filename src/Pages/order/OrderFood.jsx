@@ -23,7 +23,7 @@ const drinks = menu.filter(item => item.category === 'drinks');
     return (
         <div>
            <Helmet>
-                <title>Bistro Boss | Order Food</title>
+                <title>Bistro Boss || Order Food</title>
             </Helmet>
             <Cover img={banner} title={"Order Food"}></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
