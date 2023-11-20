@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxios from "../../../hook/useAxios";
 import useCart from "../../../hook/useCart";
 import useAuth from "../../../hook/useAuth";
+import Swal from "sweetalert2";
 
 
 const CheckoutForm = () => {
@@ -13,15 +14,18 @@ const CheckoutForm = () => {
     const elements = useElements()
     const axios = useAxios();
     const {user} = useAuth()
-    const [cart] = useCart();
+    const [cart,refetch] = useCart();
     const totalPrice = cart.reduce((total,item) => total + item.price, 0)
 
     useEffect(()=>{
-     axios.post('/create-payment-intent', {price: totalPrice})
-     .then(res =>{
-       console.log(res.data.clientSecret)
-       setClientSecret(res.data.clientSecret)
-     })
+      if(totalPrice > 0){
+
+        axios.post('/create-payment-intent', {price: totalPrice})
+        .then(res =>{
+          console.log(res.data.clientSecret)
+          setClientSecret(res.data.clientSecret)
+        })
+      }
 
     },[axios,totalPrice])
     const handleSubmit = async(e) =>{
@@ -75,13 +79,25 @@ const CheckoutForm = () => {
                     price: totalPrice,
                     transectionId: paymentIntent.id,
                     date: new Date(),
-                    cartId: cart.map(item => item._id),
-                    menuItemId: cart.map(item => item.menuItemId),
+                    cartIds: cart.map(item => item._id),
+                    menuItemIds: cart.map(item => item.menuItemId),
                     status: 'pending'
                    }
 
                  const res =await axios.post('/payments', payment)
-                 console.log('payment saved',res)
+                 if(res.data?.paymentResult?.insertedId){
+                  refetch()
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: 'payment is successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                   });
+                  
+                 }
+                 
+                 
             }
 
          

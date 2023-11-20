@@ -41,7 +41,7 @@ const Dashboard = () => {
                 </li>
                 <li className='flex justify-center items-center text-2xl gap-3 text-black m-8'>
                 <AiOutlineCalendar></AiOutlineCalendar>
-                <NavLink to='/dashboard/reservation'>Reservation</NavLink>
+                <NavLink to='/dashboard/paymentHistory'>Payment Hsitory</NavLink>
                 </li>
                 <li className='flex justify-center items-center text-2xl gap-3 text-black m-8'>
                 <AiOutlineAccountBook></AiOutlineAccountBook>

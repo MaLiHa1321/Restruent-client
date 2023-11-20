@@ -16,6 +16,7 @@ import AdminRoutes from "./AdminRoutes";
 import ManageItems from "../Pages/Dashboard/ManageItem/ManageItems";
 import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
  export const router = createBrowserRouter([
     {
       path: "/",
@@ -64,6 +65,10 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
           path: 'payment',
           element: <Payment></Payment>
         },
+        {
+          path: 'paymentHistory',
+          element: <PaymentHistory></PaymentHistory>
+        },
 
         // admin routes
         {
@@ -90,7 +95,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
           element: <AdminRoutes>
             <UpdateItem />
           </AdminRoutes>,
-          loader: ({params}) => fetch(`https://final-restruent-server.vercel.app/menu/${params.id}`)
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
         },
       ]
     }
