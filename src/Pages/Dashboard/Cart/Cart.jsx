@@ -3,6 +3,7 @@ import useCart from '../../../hook/useCart';
 import { AiOutlineDelete, AiOutlineShoppingCart } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hook/useAxios';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = useCart()
@@ -44,7 +45,12 @@ const Cart = () => {
 
             <h2 className='text-2xl'>Items: {cart.length}</h2>
             <h2 className='text-2xl'>Items: {totalPrice}</h2>
-            <button className='btn btn-primary'>Pay</button>
+            {
+              cart.length ?    <Link to='/dashboard/payment'>
+              <button className='btn btn-primary'>Pay</button>
+              </Link> : <button disabled className='btn btn-primary'>Pay</button>
+            }
+         
             </div>
             <div>
             <div className="overflow-x-auto">
