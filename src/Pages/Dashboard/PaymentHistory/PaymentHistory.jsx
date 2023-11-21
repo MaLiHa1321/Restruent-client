@@ -41,6 +41,7 @@ const PaymentHistory = () => {
               <td>{payment.status}</td>
             </tr>)
       }
+      
 
   
     </tbody>
